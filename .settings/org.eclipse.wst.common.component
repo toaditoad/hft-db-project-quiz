@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?><project-modules id="moduleCoreId" project-version="1.5.0">
-    <wb-module deploy-name="db-project-quiz">
+    <wb-module deploy-name="hft-db-project-quiz">
         <wb-resource deploy-path="/" source-path="/target/m2e-wtp/web-resources"/>
         <wb-resource deploy-path="/" source-path="/WebContent" tag="defaultRootSource"/>
         <wb-resource deploy-path="/WEB-INF/classes" source-path="/src"/>
-        <property name="java-output-path" value="/db-project-quiz/build/classes"/>
-        <property name="context-root" value="db-project-quiz"/>
+        <property name="java-output-path" value="/hft-db-project-quiz/build/classes"/>
+        <property name="context-root" value="hft-db-project-quiz"/>
     </wb-module>
 </project-modules>
