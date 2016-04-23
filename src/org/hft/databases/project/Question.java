@@ -43,6 +43,27 @@ public class Question implements Serializable {
 
 	@Column(name = "correctAnswer")
 	private String correctAnswer;
+	
+	public Question() {
+		super();
+	}
+	
+		public Question(int id, String questionDescription, String answer01id, String answer01description,
+			String answer02id, String answer02description, String answer03id, String answer03description,
+			String answer04id, String answer04description, String correctAnswer) {
+		super();
+		this.id = id;
+		this.questionDescription = questionDescription;
+		this.answer01id = answer01id;
+		this.answer01description = answer01description;
+		this.answer02id = answer02id;
+		this.answer02description = answer02description;
+		this.answer03id = answer03id;
+		this.answer03description = answer03description;
+		this.answer04id = answer04id;
+		this.answer04description = answer04description;
+		this.correctAnswer = correctAnswer;
+	}
 
 	public int getId() {
 		return id;

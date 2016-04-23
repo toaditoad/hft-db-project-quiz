@@ -6,7 +6,8 @@ import javax.persistence.PersistenceContext;
 
 @Stateless
 public class QuestionEJB implements QuestionEJBLocal {
-	@PersistenceContext(unitName = "db-project-name")
+
+	@PersistenceContext(unitName = "hft-db-project-quiz")
 	private EntityManager entityManager;
 
 	@Override
