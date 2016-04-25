@@ -48,9 +48,14 @@ public class Question implements Serializable {
 		super();
 	}
 	
-		public Question(int id, String questionDescription, String answer01id, String answer01description,
-			String answer02id, String answer02description, String answer03id, String answer03description,
-			String answer04id, String answer04description, String correctAnswer) {
+	public Question(String questionDescription) {
+		super();
+		this.questionDescription = questionDescription;
+	}
+
+	public Question(int id, String questionDescription, String answer01id, String answer01description,
+		String answer02id, String answer02description, String answer03id, String answer03description,
+		String answer04id, String answer04description, String correctAnswer) {
 		super();
 		this.id = id;
 		this.questionDescription = questionDescription;
