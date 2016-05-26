@@ -7,18 +7,62 @@
       xmlns:f="http://xmlns.jcp.org/jsf/core">
     <head jsf:id="head">
 		<title>Creates a new Question to our awesome quiz!</title>
+		<link rel="stylesheet" href="lib/bootstrap-3.3.6/css/bootstrap.min.css" />
 	</head>
 	<h:body>
 		<f:view transient="true">
-		<h:form>
-			<h:inputText id="questionDescription" value="#{questionController.question.questionDescription}" />
-			<br />
-			Output: #{questionController.question.questionDescription}<br />
-			<br />
-			Database count: #{questionController.testDatabase}
-			<br />
-			<h:commandButton value="Create new question" action="#{questionController.createNewQuestion}"/>
-		</h:form>
+			<div class="container-fluid">
+			<div class="row">
+			<h:form class="form-horizontal">
+				<div class="form-group">
+					<label for="inputQuestion" class="col-sm-2 control-label">Question:</label>
+					<div class="col-sm-10">
+						<h:inputText id="inputQuestion" value="#{questionController.question.question}" class="form-control" placeholder="Question" />
+					</div>
+				</div>
+				<div class="form-group">
+					<label for="inputAnswer01" class="col-sm-2 control-label">Answer 01:</label>
+					<div class="col-sm-10">
+						<h:inputText id="inputAnswer01" value="#{questionController.question.answer01}" class="form-control" placeholder="Answer 01" />
+					</div>
+				</div>
+				<div class="form-group">
+					<label for="inputAnswer02" class="col-sm-2 control-label">Answer 02:</label>
+					<div class="col-sm-10">
+						<h:inputText id="inputAnswer02" value="#{questionController.question.answer02}" class="form-control" placeholder="Answer 02" />
+					</div>
+				</div>
+				<div class="form-group">
+					<label for="inputAnswer03" class="col-sm-2 control-label">Answer 03:</label>
+					<div class="col-sm-10">
+						<h:inputText id="inputAnswer03" value="#{questionController.question.answer03}" class="form-control" placeholder="Answer 03" />
+					</div>
+				</div>
+				<div class="form-group">
+					<label for="inputAnswer04" class="col-sm-2 control-label">Answer 04:</label>
+					<div class="col-sm-10">
+						<h:inputText id="inputAnswer04" value="#{questionController.question.answer04}" class="form-control" placeholder="Answer 04" />
+					</div>
+				</div>
+				<div class="form-group">
+					<label class="col-sm-2 control-label">Correct answer:</label>
+					<div class="col-sm-10">
+						<h:selectOneMenu value="#{questionController.question.correctAnswer}">
+						   	<f:selectItem itemValue="answer01" itemLabel="Answer 01" />
+						   	<f:selectItem itemValue="answer02" itemLabel="Answer 02" />
+						   	<f:selectItem itemValue="answer03" itemLabel="Answer 03" />
+						   	<f:selectItem itemValue="answer04" itemLabel="Answer 04" />
+						</h:selectOneMenu>
+					</div>
+				</div>
+				<div class="form-group">
+					<div class="col-sm-offset-2 col-sm-10">
+						<h:commandButton value="Create new question" action="#{questionController.createNewQuestion}" class="btn btn-default" />
+					</div>
+				</div>
+			</h:form>
+			</div>
+			</div>
 		</f:view>
 	</h:body>
 </html>

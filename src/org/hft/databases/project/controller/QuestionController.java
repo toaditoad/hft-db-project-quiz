@@ -1,10 +1,13 @@
-package org.hft.databases.project;
+package org.hft.databases.project.controller;
 
 import java.io.Serializable;
 import javax.annotation.PostConstruct;
 import javax.ejb.EJB;
 import javax.enterprise.context.RequestScoped;
 import javax.inject.Named;
+
+import org.hft.databases.project.ejb.QuestionEJBLocal;
+import org.hft.databases.project.entity.Question;
 
 @Named
 @RequestScoped

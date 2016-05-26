@@ -1,0 +1,35 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:p="http://xmlns.jcp.org/jsf/passthrough"
+      xmlns:jsf="http://xmlns.jcp.org/jsf"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+    <head jsf:id="head">
+		<title>Quiz</title>
+		<link rel="stylesheet" href="lib/bootstrap-3.3.6/css/bootstrap.min.css" />
+	</head>
+	<h:body>
+		<f:view>
+			<div class="container-fluid">
+				<div class="row">
+					Question: <h:outputText value="#{quizController.currentQuestion.question}" />
+					<br />
+					<h:form class="form-horizontal">
+						<h:selectOneRadio value="#{quizController.selectedAnswer}">
+							<f:selectItem itemValue="answer01" itemLabel="#{quizController.currentQuestion.answer01}" />
+							<f:selectItem itemValue="answer02" itemLabel="#{quizController.currentQuestion.answer02}" />
+							<f:selectItem itemValue="answer03" itemLabel="#{quizController.currentQuestion.answer03}" />
+							<f:selectItem itemValue="answer04" itemLabel="#{quizController.currentQuestion.answer04}" />
+						</h:selectOneRadio>
+						<div class="form-group">
+							<div class="col-sm-offset-2 col-sm-10">
+								<h:commandButton value="Submit answer" action="#{quizController.evaluateAnswer}" class="btn btn-default" />
+							</div>
+						</div>
+					</h:form>
+				</div>
+			</div>
+		</f:view>
+	</h:body>
+</html>
