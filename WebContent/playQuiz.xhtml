@@ -1,0 +1,36 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:b="http://bootsfaces.net/ui"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
+	<h:head>
+		<title>DB project : Quiz</title>
+		<link type="text/css" rel="stylesheet" href="css/styles.css" />
+	</h:head>
+	<h:body style="padding-top: 15px">
+		<b:container layout="fluid">
+
+			<ui:include src="components/navbar.xhtml" />
+
+			<b:row>
+				<b:column>
+					<h:form>
+						<h3><em>Question: </em><h:outputText value="#{quizController.currentQuestion.question}" /></h3>
+
+						<h:selectOneRadio styleClass="answers" layout="pageDirection" value="#{quizController.selectedAnswer}">
+							<f:selectItem itemValue="answer01" itemLabel="#{quizController.currentQuestion.answer01}" />
+							<f:selectItem itemValue="answer02" itemLabel="#{quizController.currentQuestion.answer02}" />
+							<f:selectItem itemValue="answer03" itemLabel="#{quizController.currentQuestion.answer03}" />
+							<f:selectItem itemValue="answer04" itemLabel="#{quizController.currentQuestion.answer04}" />
+						</h:selectOneRadio>
+						<br />
+						<b:commandButton value="Submit answer" action="#{quizController.evaluateAnswer}" />
+					</h:form>
+				</b:column>
+			</b:row>
+
+		</b:container>
+	</h:body>
+</html>

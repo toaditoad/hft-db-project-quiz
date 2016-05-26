@@ -17,13 +17,13 @@ import org.hft.databases.project.entity.Question;
 public class QuizController implements Serializable {
 
 	private static final long serialVersionUID = 1L;
-	
+
 	@EJB
 	private QuestionEJBLocal questionEJB;
 
 	private Question currentQuestion;
 	private List<Question> questions;
-	
+
 	private int countAnsweredQuestions = 0;
 	private String selectedAnswer;
 
@@ -31,21 +31,21 @@ public class QuizController implements Serializable {
 	public void init() {
 		this.questions = questionEJB.getAllQuestions();
 		Collections.shuffle(this.questions);
-		
+
 		this.currentQuestion = getNextQuestion(this.countAnsweredQuestions);
 	}
-	
+
 	public Question getNextQuestion(int index) {
 		Question q = this.questions.get(index);
 		return q;
 	}
-	
+
 	public void evaluateAnswer() {
 		if (this.selectedAnswer.equals(this.currentQuestion.getCorrectAnswer())) {
 			System.out.println("success");
 			if (this.countAnsweredQuestions < this.questions.size() - 1) {
 				this.countAnsweredQuestions++;
-				this.selectedAnswer = "";
+				this.setSelectedAnswer("");
 				this.currentQuestion = getNextQuestion(this.countAnsweredQuestions);
 			} else {
 				System.out.println("no questions left");
@@ -56,11 +56,11 @@ public class QuizController implements Serializable {
 			// redirect to store score view
 		}
 	}
-	
+
 	public Question getCurrentQuestion() {
 		return this.currentQuestion;
 	}
-	
+
 	public String getSelectedAnswer() {
 		return this.selectedAnswer;
 	}
