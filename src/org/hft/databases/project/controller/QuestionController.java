@@ -28,12 +28,6 @@ public class QuestionController implements Serializable {
 	public void createNewQuestion() {
 		question = questionEJB.createNewQuestion(question);
 	}
-	
-	public String getTestDatabase() {
-		String result = questionEJB.testDatabase();
-		
-		return result;
-	}
 
 	public Question getQuestion() {
 		return question;

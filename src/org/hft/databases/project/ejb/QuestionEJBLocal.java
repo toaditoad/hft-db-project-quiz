@@ -8,8 +8,6 @@ public interface QuestionEJBLocal {
 
 	public Question createNewQuestion(Question question);
 
-	public String testDatabase();
-	
 	public List<Question> getAllQuestions();
-	
+
 }
