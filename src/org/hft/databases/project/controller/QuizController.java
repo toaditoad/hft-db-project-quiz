@@ -3,7 +3,6 @@ package org.hft.databases.project.controller;
 import java.io.IOException;
 import java.io.Serializable;
 import java.util.Collections;
-import java.util.Date;
 import java.util.List;
 
 import javax.annotation.PostConstruct;
@@ -15,7 +14,7 @@ import javax.inject.Named;
 import org.hft.databases.project.ejb.QuestionEJBLocal;
 import org.hft.databases.project.ejb.ScoreEJBLocal;
 import org.hft.databases.project.entity.Question;
-import org.hft.databases.project.entity.Score;
+import org.hft.databases.project.entity.SingleScore;
 
 @Named
 @SessionScoped
@@ -31,7 +30,7 @@ public class QuizController implements Serializable {
 
 	private Question currentQuestion;
 	private List<Question> questions;
-	private Score score;
+	private SingleScore score;
 
 	private int countAnsweredQuestions = 0;
 	private String selectedAnswer;
@@ -41,7 +40,7 @@ public class QuizController implements Serializable {
 
 	@PostConstruct
 	public void init() {
-		this.score = new Score();
+		this.score = new SingleScore();
 		this.questions = questionEJB.getAllQuestions();
 		Collections.shuffle(this.questions);
 
@@ -75,7 +74,7 @@ public class QuizController implements Serializable {
 	public void prepareSaveScore() {
 		try {
 			this.score.setScore(this.countAnsweredQuestions);
-			this.score.setScoreDate(new Date());
+			//this.score.setScoreDate(new Date());
 			this.renderSaveScoreForm = true;
 			FacesContext.getCurrentInstance().getExternalContext().redirect("saveScore.xhtml");
 		} catch (IOException e) {
@@ -94,11 +93,11 @@ public class QuizController implements Serializable {
 		return this.currentQuestion;
 	}
 
-	public Score getScore() {
+	public SingleScore getScore() {
 		return score;
 	}
 
-	public void setScore(Score score) {
+	public void setScore(SingleScore score) {
 		this.score = score;
 	}
 

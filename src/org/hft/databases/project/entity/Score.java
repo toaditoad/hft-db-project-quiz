@@ -1,17 +1,16 @@
 package org.hft.databases.project.entity;
 
 import java.io.Serializable;
-import java.util.Date;
+import java.sql.Date;
 
 import javax.persistence.Column;
-import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.Table;
+import javax.persistence.MappedSuperclass;
 
-@Entity
-@Table(name = "SCORE")
+
+@MappedSuperclass
 public class Score implements Serializable {
 
 	private static final long serialVersionUID = 1L;
@@ -76,5 +75,4 @@ public class Score implements Serializable {
 	public void setCategoryId(int categoryId) {
 		this.categoryId = categoryId;
 	}
-
 }

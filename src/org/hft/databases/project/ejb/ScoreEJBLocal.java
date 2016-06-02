@@ -1,9 +1,12 @@
 package org.hft.databases.project.ejb;
 
-import org.hft.databases.project.entity.Score;
+import org.hft.databases.project.entity.RankedScore;
+import org.hft.databases.project.entity.SingleScore;
 
 public interface ScoreEJBLocal {
 
-	public Score saveScore(Score score);
+	public SingleScore saveScore(SingleScore score);
+
+	public RankedScore[] getHighscores();
 
 }

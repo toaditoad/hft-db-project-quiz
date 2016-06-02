@@ -1,0 +1,58 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:b="http://bootsfaces.net/ui"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
+	<h:head>
+		<title>DB project : Quiz</title>
+		<link type="text/css" rel="stylesheet" href="css/styles.css" />
+	</h:head>
+	<h:body style="padding-top: 15px">
+		<b:container layout="fluid">
+
+			<ui:include src="components/navbar.xhtml" />
+
+			<b:row>
+				<b:column>
+					<h3>Highscore List</h3>
+					<b:dataTable value="#{highscoreController.highscores}" var="score" id="highscoreTable"
+						styleClass="table table-striped table-bordered" style="width:100%" paginated="false" >
+						<h:column>
+							<f:facet name="header">
+								<h:outputText value="Rank" />
+							</f:facet>
+							<h:outputText value="#{score.ranking}" />
+						</h:column>
+						<h:column>
+							<f:facet name="header">
+								<h:outputText value="Name" />
+							</f:facet>
+							<h:outputText value="#{score.name}" />
+						</h:column>
+						<h:column>
+							<f:facet name="header">
+								<h:outputText value="Score" />
+							</f:facet>
+							<h:outputText value="#{score.score}" />
+						</h:column>
+						<h:column>
+							<f:facet name="header">
+								<h:outputText value="Category" />
+							</f:facet>
+							<h:outputText value="#{score.categoryId}" />
+						</h:column>
+						<h:column>
+							<f:facet name="header">
+								<h:outputText value="Date" />
+							</f:facet>
+							<h:outputText value="#{score.scoreDate}" />
+						</h:column>
+					</b:dataTable>
+				</b:column>
+			</b:row>
+
+		</b:container>
+	</h:body>
+</html>
