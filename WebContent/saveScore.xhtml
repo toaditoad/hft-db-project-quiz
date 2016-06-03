@@ -28,7 +28,9 @@
 					<h:form>
 						<h3>Save your score of <em>#{quizController.countAnsweredQuestions}</em>!</h3>
 
-						<b:inputText id="inputName" value="#{quizController.score.name}" label="Name:" renderLabel="true" />
+						<b:inputText id="inputName" value="#{quizController.score.name}" label="Name:" renderLabel="true"
+							required="true" requiredMessage="Please enter your name!" />
+						<b:message />
 						<br />
 						<b:commandButton value="Save score" action="#{quizController.saveScore}" />
 					</h:form>
