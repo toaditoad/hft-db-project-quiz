@@ -47,7 +47,9 @@
 							<f:facet name="header">
 								<h:outputText value="Date" />
 							</f:facet>
-							<h:outputText value="#{score.scoreDate}" />
+							<h:outputText value="#{score.scoreDate}">
+								<f:convertDateTime pattern="dd.MM.yyyy HH:mm" />
+							</h:outputText>
 						</h:column>
 					</b:dataTable>
 				</b:column>

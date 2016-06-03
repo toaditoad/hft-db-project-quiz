@@ -2,6 +2,7 @@ package org.hft.databases.project.controller;
 
 import java.io.IOException;
 import java.io.Serializable;
+import java.util.Date;
 import java.util.Collections;
 import java.util.List;
 
@@ -74,7 +75,7 @@ public class QuizController implements Serializable {
 	public void prepareSaveScore() {
 		try {
 			this.score.setScore(this.countAnsweredQuestions);
-			//this.score.setScoreDate(new Date());
+			this.score.setScoreDate(new Date());
 			this.renderSaveScoreForm = true;
 			FacesContext.getCurrentInstance().getExternalContext().redirect("saveScore.xhtml");
 		} catch (IOException e) {
