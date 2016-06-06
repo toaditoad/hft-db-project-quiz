@@ -36,6 +36,7 @@ public class QuizController implements Serializable {
 	private int countAnsweredQuestions = 0;
 	private String selectedAnswer;
 	private String ctrlMessage;
+	private String gameEndedMessage;
 
 	@PostConstruct
 	public void init() {
@@ -64,26 +65,25 @@ public class QuizController implements Serializable {
 				this.setSelectedAnswer("");
 				this.currentQuestion = getNextQuestion(this.countAnsweredQuestions);
 			} else {
-				System.out.println("no questions left");
-				// redirect to store score view
+				setGameEndedMessage("The game has ended. There are no questions left in this category.");
 				prepareSaveScore();
 			}
 		} else {
-			System.out.println("error");
-			// redirect to store score view
+			setGameEndedMessage("Your answer was not correct.");
 			prepareSaveScore();
 		}
 	}
 
 	public void prepareSaveScore() {
+		this.score.setScore(this.countAnsweredQuestions);
+		this.score.setScoreDate(new Date());
+
+		// toDo: get categoryId from the category that has been chosen for the game
+		this.score.setCategoryId(27);
+
+		setCtrlMessage(null);
+
 		try {
-			this.score.setScore(this.countAnsweredQuestions);
-			this.score.setScoreDate(new Date());
-
-			// toDo: get categoryId from the category that has been chosen for the game
-			this.score.setCategoryId(27);
-
-			setCtrlMessage(null);
 			FacesContext.getCurrentInstance().getExternalContext().redirect("saveScore.xhtml");
 		} catch (IOException e) {
 			e.printStackTrace();
@@ -126,5 +126,13 @@ public class QuizController implements Serializable {
 
 	public void setCtrlMessage(String ctrlMessage) {
 		this.ctrlMessage = ctrlMessage;
+	}
+
+	public String getGameEndedMessage() {
+		return gameEndedMessage;
+	}
+
+	public void setGameEndedMessage(String gameEndedMessage) {
+		this.gameEndedMessage = gameEndedMessage;
 	}
 }

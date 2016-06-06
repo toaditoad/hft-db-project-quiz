@@ -24,6 +24,9 @@
 				</b:column>
 
 				<b:column rendered="#{quizController.ctrlMessage == null}">
+					<b:alert severity="info" rendered="#{quizController.gameEndedMessage != null}">
+						#{quizController.gameEndedMessage}
+					</b:alert>
 					<h:form>
 						<h3>Save your score of <em>#{quizController.countAnsweredQuestions}</em>!</h3>
 
