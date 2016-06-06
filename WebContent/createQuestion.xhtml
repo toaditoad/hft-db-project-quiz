@@ -48,7 +48,7 @@
 							required="true" requiredMessage="Please choose a category.">
 							<f:selectItem itemValue="" itemLabel="--select one--" noSelectionOption="true" />
 							<f:selectItems value="#{categoryController.categories}" var="cat"
-								itemValue="#{cat.id}" itemLabel="#{cat.categoryName}" />
+								itemValue="#{cat}" itemLabel="#{cat.categoryName}" />
 						</b:selectOneMenu>
 						<b:messages />
 						<b:commandButton value="Create new question" action="#{questionController.createNewQuestion}" />

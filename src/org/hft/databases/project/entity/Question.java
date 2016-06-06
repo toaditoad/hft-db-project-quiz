@@ -4,9 +4,12 @@ import java.io.Serializable;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 @Entity
@@ -38,8 +41,9 @@ public class Question implements Serializable {
 	@Column(name = "correctAnswer")
 	private String correctAnswer;
 
-	@Column(name = "categoryId")
-	private int categoryId;
+	@ManyToOne(fetch = FetchType.LAZY)
+	@JoinColumn(name = "categoryId")
+	private Category categoryId;
 
 	public Question() {
 		super();
@@ -101,11 +105,11 @@ public class Question implements Serializable {
 		this.correctAnswer = correctAnswer;
 	}
 
-	public int getCategoryId() {
+	public Category getCategoryId() {
 		return categoryId;
 	}
 
-	public void setCategoryId(int categoryId) {
+	public void setCategoryId(Category categoryId) {
 		this.categoryId = categoryId;
 	}
 }
