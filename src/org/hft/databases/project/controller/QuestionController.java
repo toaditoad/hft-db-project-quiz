@@ -20,13 +20,19 @@ public class QuestionController implements Serializable {
 
 	private Question question;
 
+	private String ctrlMessage;
+
 	@PostConstruct
 	public void init() {
 		question = new Question();
+		setCtrlMessage(null);
 	}
 
 	public void createNewQuestion() {
 		question = questionEJB.createNewQuestion(question);
+		if (question != null) {
+			setCtrlMessage("You successfully created a question.");
+		}
 	}
 
 	public Question getQuestion() {
@@ -35,5 +41,13 @@ public class QuestionController implements Serializable {
 
 	public void setQuestion(Question question) {
 		this.question = question;
+	}
+
+	public String getCtrlMessage() {
+		return ctrlMessage;
+	}
+
+	public void setCtrlMessage(String ctrlMessage) {
+		this.ctrlMessage = ctrlMessage;
 	}
 }

@@ -35,17 +35,20 @@ public class QuizController implements Serializable {
 
 	private int countAnsweredQuestions = 0;
 	private String selectedAnswer;
-
-	private boolean renderSaveScoreForm = false;
-	private boolean renderSaveScoreAlertSuccess = false;
+	private String ctrlMessage;
 
 	@PostConstruct
 	public void init() {
 		this.score = new SingleScore();
-		this.questions = questionEJB.getAllQuestions();
-		Collections.shuffle(this.questions);
 
-		this.currentQuestion = getNextQuestion(this.countAnsweredQuestions);
+		this.questions = questionEJB.getAllQuestions();
+		if (this.questions.size() > 0) {
+			setCtrlMessage(null);
+			Collections.shuffle(this.questions);
+			this.currentQuestion = getNextQuestion(this.countAnsweredQuestions);
+		} else {
+			setCtrlMessage("There are no questions in the database.");
+		}
 	}
 
 	public Question getNextQuestion(int index) {
@@ -76,7 +79,11 @@ public class QuizController implements Serializable {
 		try {
 			this.score.setScore(this.countAnsweredQuestions);
 			this.score.setScoreDate(new Date());
-			this.renderSaveScoreForm = true;
+
+			// toDo: get categoryId from the category that has been chosen for the game
+			this.score.setCategoryId(27);
+
+			setCtrlMessage(null);
 			FacesContext.getCurrentInstance().getExternalContext().redirect("saveScore.xhtml");
 		} catch (IOException e) {
 			e.printStackTrace();
@@ -85,8 +92,7 @@ public class QuizController implements Serializable {
 
 	public void saveScore() {
 		this.score = scoreEJB.saveScore(this.score);
-		this.renderSaveScoreForm = false;
-		this.renderSaveScoreAlertSuccess = true;
+		setCtrlMessage(this.score.getName() + ", you successfully stored your score of " + this.score.getScore() + ".");
 		FacesContext.getCurrentInstance().getExternalContext().invalidateSession();
 	}
 
@@ -114,11 +120,11 @@ public class QuizController implements Serializable {
 		return this.countAnsweredQuestions;
 	}
 
-	public boolean isRenderSaveScoreForm() {
-		return renderSaveScoreForm;
+	public String getCtrlMessage() {
+		return ctrlMessage;
 	}
 
-	public boolean isRenderSaveScoreAlertSuccess() {
-		return renderSaveScoreAlertSuccess;
+	public void setCtrlMessage(String ctrlMessage) {
+		this.ctrlMessage = ctrlMessage;
 	}
 }

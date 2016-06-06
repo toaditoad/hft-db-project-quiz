@@ -15,10 +15,21 @@
 			<ui:include src="components/navbar.xhtml" />
 
 			<b:row>
-				<b:column>
+				<b:column rendered="#{categoryController.ctrlMessage != null}">
+					<b:alert severity="success">
+						<strong>Congratulations!</strong> #{categoryController.ctrlMessage}
+					</b:alert>
+
+					<b:button value="Create another category" outcome="createCategory.xhtml" />
+				</b:column>
+
+				<b:column rendered="#{categoryController.ctrlMessage == null}">
 					<h:form>
-						<h3>Create question category</h3>
-						<b:inputText id="inputCategory" value="#{categoryController.category.categoryName}" label="Category:" renderLabel="true" />
+						<h3>Create a question category</h3>
+						<b:inputText id="inputCategory" value="#{categoryController.category.categoryName}" label="Category:"
+							renderLabel="true" required="true" requiredMessage="Please enter a category name!" />
+						<b:message />
+						<br />
 						<b:commandButton value="Create category" action="#{categoryController.createNewCategory}" />
 					</h:form>
 				</b:column>

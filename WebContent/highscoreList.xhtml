@@ -16,7 +16,7 @@
 
 			<b:row>
 				<b:column>
-					<h3>Highscore List</h3>
+					<h3>Highscore list</h3>
 					<b:dataTable value="#{highscoreController.highscores}" var="score" id="highscoreTable"
 						styleClass="table table-striped table-bordered" style="width:100%" paginated="false" >
 						<h:column>
@@ -41,7 +41,7 @@
 							<f:facet name="header">
 								<h:outputText value="Category" />
 							</f:facet>
-							<h:outputText value="#{score.categoryId}" />
+							<h:outputText value="#{score.categoryName}" />
 						</h:column>
 						<h:column>
 							<f:facet name="header">

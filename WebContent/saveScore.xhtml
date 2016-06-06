@@ -15,16 +15,15 @@
 			<ui:include src="components/navbar.xhtml" />
 
 			<b:row>
-				<b:column rendered="#{quizController.renderSaveScoreAlertSuccess}">
-						<b:alert  severity="success">
-							<strong>Congratulations!</strong> #{quizController.score.name}, you successfully stored your
-							score of #{quizController.score.score}.
-						</b:alert>
+				<b:column rendered="#{quizController.ctrlMessage != null}">
+					<b:alert severity="success">
+						<strong>Congratulations!</strong> #{quizController.ctrlMessage}
+					</b:alert>
 
-						<b:button value="Play a new quiz" outcome="playQuiz.xhtml" />
+					<b:button value="Play a new quiz" outcome="playQuiz.xhtml" />
 				</b:column>
 
-				<b:column rendered="#{quizController.renderSaveScoreForm}">
+				<b:column rendered="#{quizController.ctrlMessage == null}">
 					<h:form>
 						<h3>Save your score of <em>#{quizController.countAnsweredQuestions}</em>!</h3>
 

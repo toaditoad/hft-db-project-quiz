@@ -15,25 +15,42 @@
 			<ui:include src="components/navbar.xhtml" />
 
 			<b:row>
-				<b:column>
+				<b:column rendered="#{questionController.ctrlMessage != null}">
+					<b:alert severity="success">
+						<strong>Congratulations!</strong> #{questionController.ctrlMessage}
+					</b:alert>
+
+					<b:button value="Create another question" outcome="createQuestion.xhtml" />
+				</b:column>
+
+				<b:column rendered="#{questionController.ctrlMessage == null}">
 					<h:form>
 						<h3>Create a new question</h3>
-						<b:inputText id="inputQuestion" value="#{questionController.question.question}" label="Question:" renderLabel="true" />
-						<b:inputText id="inputAnswer01" value="#{questionController.question.answer01}" label="Answer 01:" renderLabel="true" />
-						<b:inputText id="inputAnswer02" value="#{questionController.question.answer02}" label="Answer 02:" renderLabel="true" />
-						<b:inputText id="inputAnswer03" value="#{questionController.question.answer03}" label="Answer 03:" renderLabel="true" />
-						<b:inputText id="inputAnswer04" value="#{questionController.question.answer04}" label="Answer 04:" renderLabel="true" />
-						<b:selectOneMenu value="#{questionController.question.correctAnswer}" label="Correct answer:">
+						<b:inputText id="inputQuestion" value="#{questionController.question.question}" label="Question:"
+							renderLabel="true" required="true" requiredMessage="Please enter the question." />
+						<b:inputText id="inputAnswer01" value="#{questionController.question.answer01}" label="Answer 01:"
+							renderLabel="true" required="true" requiredMessage="Please enter answer 01." />
+						<b:inputText id="inputAnswer02" value="#{questionController.question.answer02}" label="Answer 02:"
+							renderLabel="true" required="true" requiredMessage="Please enter answer 02" />
+						<b:inputText id="inputAnswer03" value="#{questionController.question.answer03}" label="Answer 03:"
+							renderLabel="true" required="true" requiredMessage="Please enter answer 03" />
+						<b:inputText id="inputAnswer04" value="#{questionController.question.answer04}" label="Answer 04:"
+							renderLabel="true" required="true" requiredMessage="Please enter answer 04" />
+						<b:selectOneMenu value="#{questionController.question.correctAnswer}" label="Correct answer:"
+							required="true" requiredMessage="Please specify the correct answer.">
+							<f:selectItem itemValue="" itemLabel="--select one--" />
 							<f:selectItem itemValue="answer01" itemLabel="Answer 01" />
 							<f:selectItem itemValue="answer02" itemLabel="Answer 02" />
 							<f:selectItem itemValue="answer03" itemLabel="Answer 03" />
 							<f:selectItem itemValue="answer04" itemLabel="Answer 04" />
 						</b:selectOneMenu>
-						<h:outputLabel value="Select Question Category" />
-						<h:selectOneMenu value="#{questionController.question.categoryId}" >
-							<f:selectItem value="#{null}" itemLabel="--select one--" />
-							<f:selectItems value="#{categoryController.categories}" var="cat" itemValue="#{cat.id}" itemLabel="#{cat.categoryName}" />
-						</h:selectOneMenu>
+						<b:selectOneMenu value="#{questionController.question.categoryId}" label="Select question category:"
+							required="true" requiredMessage="Please choose a category.">
+							<f:selectItem itemValue="" itemLabel="--select one--" noSelectionOption="true" />
+							<f:selectItems value="#{categoryController.categories}" var="cat"
+								itemValue="#{cat.id}" itemLabel="#{cat.categoryName}" />
+						</b:selectOneMenu>
+						<b:messages />
 						<b:commandButton value="Create new question" action="#{questionController.createNewQuestion}" />
 					</h:form>
 				</b:column>

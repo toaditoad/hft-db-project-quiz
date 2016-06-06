@@ -15,7 +15,12 @@
 			<ui:include src="components/navbar.xhtml" />
 
 			<b:row>
-				<b:column>
+				<b:column rendered="#{quizController.ctrlMessage != null}">
+					<b:alert severity="danger">
+						<strong>Error!</strong> #{quizController.ctrlMessage}
+					</b:alert>
+				</b:column>
+				<b:column rendered="#{quizController.ctrlMessage == null}">
 					<h:form>
 						<h3><em>Question: </em><h:outputText value="#{quizController.currentQuestion.question}" /></h3>
 

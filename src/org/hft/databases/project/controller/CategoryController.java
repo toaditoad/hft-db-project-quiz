@@ -20,18 +20,21 @@ public class CategoryController implements Serializable {
 	@EJB
 	private CategoryEJBLocal categoryEJB;
 
-
 	private Category category;
 	private List<Category> categories;
 
+	private String ctrlMessage;
+
 	@PostConstruct
 	public void init() {
+		setCtrlMessage(null);
 		category = new Category();
-		this.categories = categoryEJB.getAllCategory();
+		categories = categoryEJB.getAllCategory();
 	}
 
 	public void createNewCategory() {
 		category = categoryEJB.createNewCategory(category);
+		setCtrlMessage("You successfully created the category '" + category.getCategoryName() + "'.");
 	}
 
 	public Category getCategory() {
@@ -41,6 +44,7 @@ public class CategoryController implements Serializable {
 	public void setCategory(Category category) {
 		this.category = category;
 	}
+
 	public List<Category> getCategories() {
 		return categories;
 	}
@@ -49,5 +53,11 @@ public class CategoryController implements Serializable {
 		this.categories = categories;
 	}
 
-}
+	public String getCtrlMessage() {
+		return ctrlMessage;
+	}
 
+	public void setCtrlMessage(String ctrlMessage) {
+		this.ctrlMessage = ctrlMessage;
+	}
+}

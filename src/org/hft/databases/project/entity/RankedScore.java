@@ -13,11 +13,22 @@ public class RankedScore extends Score {
 	@Column(name = "ranking")
 	private int ranking;
 
+	@Column(name = "categoryName")
+	private String categoryName;
+
 	public int getRanking() {
 		return ranking;
 	}
 
 	public void setRanking(int ranking) {
 		this.ranking = ranking;
+	}
+
+	public String getCategoryName() {
+		return categoryName;
+	}
+
+	public void setCategoryName(String categoryName) {
+		this.categoryName = categoryName;
 	}
 }
