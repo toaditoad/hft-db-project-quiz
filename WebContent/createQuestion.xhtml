@@ -29,11 +29,15 @@
 							<f:selectItem itemValue="answer03" itemLabel="Answer 03" />
 							<f:selectItem itemValue="answer04" itemLabel="Answer 04" />
 						</b:selectOneMenu>
+						<h:outputLabel value="Select Question Category" />
+						<h:selectOneMenu value="#{questionController.question.categoryId}" >
+							<f:selectItem value="#{null}" itemLabel="--select one--" />
+							<f:selectItems value="#{categoryController.categories}" var="cat" itemValue="#{cat.categoryId}" itemLabel="#{cat.categoryName}" />
+						</h:selectOneMenu>
 						<b:commandButton value="Create new question" action="#{questionController.createNewQuestion}" />
 					</h:form>
 				</b:column>
 			</b:row>
-
 		</b:container>
 	</h:body>
 </html>

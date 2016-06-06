@@ -1,0 +1,29 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:b="http://bootsfaces.net/ui"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
+	<h:head>
+		<title>DB project : Quiz</title>
+		<link type="text/css" rel="stylesheet" href="css/styles.css" />
+	</h:head>
+	<h:body style="padding-top: 15px">
+		<b:container layout="fluid">
+
+			<ui:include src="components/navbar.xhtml" />
+
+			<b:row>
+				<b:column>
+					<h:form>
+						<h3>Create question category</h3>
+						<b:inputText id="inputCategory" value="#{categoryController.category.categoryName}" label="Category:" renderLabel="true" />
+						<b:commandButton value="Create category" action="#{categoryController.createNewCategory}" />
+					</h:form>
+				</b:column>
+			</b:row>
+
+		</b:container>
+	</h:body>
+</html>

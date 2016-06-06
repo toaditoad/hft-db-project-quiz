@@ -1,14 +1,29 @@
 package org.hft.databases.project.entity;
 
 import java.io.Serializable;
-import javax.persistence.*;
+import javax.persistence.CascadeType;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.FetchType;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
+import javax.persistence.Table;
+
+import org.hibernate.Query;
+import org.hibernate.SessionFactory;
+import org.hibernate.StatelessSession;
 
 @Entity
 @Table(name = "QUESTION")
 public class Question implements Serializable {
 
 	private static final long serialVersionUID = 1L;
-
+	
+	
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	@Column(name = "id")
@@ -31,6 +46,11 @@ public class Question implements Serializable {
 
 	@Column(name = "correctAnswer")
 	private String correctAnswer;
+	
+	//@OneToOne
+	@Column(name = "category_id")
+	private int categoryId;
+	
 	
 	public Question() {
 		super();
@@ -91,4 +111,14 @@ public class Question implements Serializable {
 	public void setCorrectAnswer(String correctAnswer) {
 		this.correctAnswer = correctAnswer;
 	}
+
+	public Category getCategoryId() {
+		return categoryId;
+	}
+	
+	public void setCategoryId(Category categoryId) {
+		this.categoryId = categoryId;
+	}
+
+	
 }
