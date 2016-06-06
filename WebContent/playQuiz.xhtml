@@ -19,12 +19,14 @@
 					<h:form>
 						<h3><em>Question: </em><h:outputText value="#{quizController.currentQuestion.question}" /></h3>
 
-						<h:selectOneRadio styleClass="answers" layout="pageDirection" value="#{quizController.selectedAnswer}">
+						<h:selectOneRadio styleClass="answers" layout="pageDirection" value="#{quizController.selectedAnswer}"
+							required="true" requiredMessage="Please select one answer!">
 							<f:selectItem itemValue="answer01" itemLabel="#{quizController.currentQuestion.answer01}" />
 							<f:selectItem itemValue="answer02" itemLabel="#{quizController.currentQuestion.answer02}" />
 							<f:selectItem itemValue="answer03" itemLabel="#{quizController.currentQuestion.answer03}" />
 							<f:selectItem itemValue="answer04" itemLabel="#{quizController.currentQuestion.answer04}" />
 						</h:selectOneRadio>
+						<b:message />
 						<br />
 						<b:commandButton value="Submit answer" action="#{quizController.evaluateAnswer}" />
 					</h:form>

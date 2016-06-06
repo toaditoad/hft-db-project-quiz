@@ -1,0 +1,42 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:b="http://bootsfaces.net/ui"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
+	<h:head>
+		<title>DB project : Quiz</title>
+		<link type="text/css" rel="stylesheet" href="css/styles.css" />
+	</h:head>
+	<h:body style="padding-top: 15px">
+		<b:container layout="fluid">
+
+			<ui:include src="components/navbar.xhtml" />
+
+			<b:row>
+				<b:column rendered="#{quizController.renderSaveScoreAlertSuccess}">
+						<b:alert  severity="success">
+							<strong>Congratulations!</strong> #{quizController.score.name}, you successfully stored your
+							score of #{quizController.score.score}.
+						</b:alert>
+
+						<b:button value="Play a new quiz" outcome="playQuiz.xhtml" />
+				</b:column>
+
+				<b:column rendered="#{quizController.renderSaveScoreForm}">
+					<h:form>
+						<h3>Save your score of <em>#{quizController.countAnsweredQuestions}</em>!</h3>
+
+						<b:inputText id="inputName" value="#{quizController.score.name}" label="Name:" renderLabel="true"
+							required="true" requiredMessage="Please enter your name!" />
+						<b:message />
+						<br />
+						<b:commandButton value="Save score" action="#{quizController.saveScore}" />
+					</h:form>
+				</b:column>
+			</b:row>
+
+		</b:container>
+	</h:body>
+</html>

@@ -16,12 +16,6 @@ public class QuestionEJB implements QuestionEJBLocal {
 	@PersistenceContext(unitName = "hft-db-project-quiz")
 	private EntityManager entityManager;
 
-	public String testDatabase() {
-		String count = ((Long)(entityManager.createQuery("select count(*) from Question")).getSingleResult()).toString();
-
-		return count;
-	}
-
 	public Question createNewQuestion(Question question) {
 		entityManager.persist(question);
 
