@@ -6,7 +6,6 @@ import java.util.List;
 import javax.annotation.PostConstruct;
 import javax.ejb.EJB;
 import javax.enterprise.context.RequestScoped;
-import javax.faces.bean.SessionScoped;
 import javax.inject.Named;
 
 import org.hft.databases.project.ejb.CategoryEJBLocal;
@@ -17,24 +16,24 @@ import org.hft.databases.project.entity.Category;
 public class CategoryController implements Serializable {
 
 	private static final long serialVersionUID = 1L;
-	
+
 	@EJB
 	private CategoryEJBLocal categoryEJB;
-	
-	
+
+
 	private Category category;
 	private List<Category> categories;
-	
+
 	@PostConstruct
 	public void init() {
 		category = new Category();
 		this.categories = categoryEJB.getAllCategory();
 	}
-	
+
 	public void createNewCategory() {
 		category = categoryEJB.createNewCategory(category);
 	}
-	
+
 	public Category getCategory() {
 		return category;
 	}
