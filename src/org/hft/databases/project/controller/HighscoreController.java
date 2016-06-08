@@ -23,7 +23,6 @@ public class HighscoreController implements Serializable {
 
 	@PostConstruct
 	public void init() {
-		System.out.println("Hi");
 		this.highscores = scoreEJB.getHighscores();
 	}
 
