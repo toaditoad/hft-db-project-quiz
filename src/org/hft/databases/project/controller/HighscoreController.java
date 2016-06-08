@@ -26,6 +26,7 @@ public class HighscoreController implements Serializable {
 		System.out.println("Hi");
 		this.highscores = scoreEJB.getHighscores();
 		System.out.println("Heights of positivity");
+		System.out.println("Bye!");
 	}
 
 	public RankedScore[] getHighscores() {
