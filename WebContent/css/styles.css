@@ -1,3 +1,8 @@
 .answers label {
 	margin-left: 10px;
 }
+
+.btn-category {
+	margin-right: 10px !important;
+	margin-bottom: 10px !important;
+}

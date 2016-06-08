@@ -1,0 +1,35 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:b="http://bootsfaces.net/ui"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
+	<h:head>
+		<title>DB project : Quiz</title>
+		<link type="text/css" rel="stylesheet" href="css/styles.css" />
+	</h:head>
+	<h:body style="padding-top: 15px">
+		<b:container layout="fluid">
+
+			<ui:include src="components/navbar.xhtml" />
+
+			<b:row>
+				<b:column rendered="#{quizController.ctrlMessage != null}">
+					<b:alert severity="danger">
+						<strong>Error!</strong> #{quizController.ctrlMessage}
+					</b:alert>
+				</b:column>
+				<b:column rendered="#{quizController.ctrlMessage == null}">
+					<h:form>
+						<ui:repeat var="cat" value="#{categoryController.categories}">
+							<b:commandButton value="#{cat.categoryName}" look="primary" styleClass="btn-category" action="#{quizController.chooseCategory(cat)}">
+							</b:commandButton>
+						</ui:repeat>
+					</h:form>
+				</b:column>
+			</b:row>
+
+		</b:container>
+	</h:body>
+</html>

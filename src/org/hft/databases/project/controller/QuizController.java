@@ -5,6 +5,7 @@ import java.io.Serializable;
 import java.util.Date;
 import java.util.Collections;
 import java.util.List;
+import java.util.Map;
 
 import javax.annotation.PostConstruct;
 import javax.ejb.EJB;
@@ -14,6 +15,7 @@ import javax.inject.Named;
 
 import org.hft.databases.project.ejb.QuestionEJBLocal;
 import org.hft.databases.project.ejb.ScoreEJBLocal;
+import org.hft.databases.project.entity.Category;
 import org.hft.databases.project.entity.Question;
 import org.hft.databases.project.entity.SingleScore;
 
@@ -43,13 +45,7 @@ public class QuizController implements Serializable {
 		this.score = new SingleScore();
 
 		this.questions = questionEJB.getAllQuestions();
-		if (this.questions.size() > 0) {
-			setCtrlMessage(null);
-			Collections.shuffle(this.questions);
-			this.currentQuestion = getNextQuestion(this.countAnsweredQuestions);
-		} else {
-			setCtrlMessage("There are no questions in the database.");
-		}
+
 	}
 
 	public Question getNextQuestion(int index) {
@@ -57,6 +53,24 @@ public class QuizController implements Serializable {
 		return q;
 	}
 
+	public void chooseCategory(Category category) {
+		this.questions = questionEJB.getQuestionsByCategory(category);
+
+		if (this.questions.size() > 0) {
+			setCtrlMessage(null);
+			Collections.shuffle(this.questions);
+			this.currentQuestion = getNextQuestion(this.countAnsweredQuestions);
+		} else {
+			setCtrlMessage("There are no questions in the database of category " + category + ".");
+		}
+
+		try {
+			FacesContext.getCurrentInstance().getExternalContext().redirect("playQuiz.xhtml");
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+
+	}
 	public void evaluateAnswer() {
 		if (this.selectedAnswer.equals(this.currentQuestion.getCorrectAnswer())) {
 			System.out.println("success");

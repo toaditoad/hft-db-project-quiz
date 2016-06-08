@@ -8,6 +8,7 @@ import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 
+import org.hft.databases.project.entity.Category;
 import org.hft.databases.project.entity.Question;
 
 @Stateless
@@ -24,6 +25,12 @@ public class QuestionEJB implements QuestionEJBLocal {
 
 	public List<Question> getAllQuestions() {
 		List<Question> questionList = castList(Question.class, entityManager.createQuery("SELECT q FROM Question q").getResultList());
+
+		return questionList;
+	}
+
+	public List<Question> getQuestionsByCategory(Category category) {
+		List<Question> questionList = castList(Question.class, entityManager.createQuery("SELECT q FROM Question q WHERE q.categoryId = :cat").setParameter("cat", category).getResultList());
 
 		return questionList;
 	}
