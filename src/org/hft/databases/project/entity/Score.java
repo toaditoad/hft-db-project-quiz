@@ -4,9 +4,12 @@ import java.io.Serializable;
 import java.util.Date;
 
 import javax.persistence.Column;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.MappedSuperclass;
 
 
@@ -29,8 +32,9 @@ public class Score implements Serializable {
 	@Column(name = "name")
 	private String name;
 
-	@Column(name = "categoryId")
-	private int categoryId;
+	@ManyToOne(fetch = FetchType.LAZY)
+	@JoinColumn(name = "categoryId")
+	private Category categoryId;
 
 	public Score() {
 		super();
@@ -68,11 +72,12 @@ public class Score implements Serializable {
 		this.name = name;
 	}
 
-	public int getCategoryId() {
+	public void setCategoryId(Category categoryId) {
+		this.categoryId = categoryId;
+	}
+
+	public Category getCategoryId() {
 		return categoryId;
 	}
 
-	public void setCategoryId(int categoryId) {
-		this.categoryId = categoryId;
-	}
 }

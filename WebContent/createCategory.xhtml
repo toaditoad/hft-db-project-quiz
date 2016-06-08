@@ -35,6 +35,32 @@
 				</b:column>
 			</b:row>
 
+			<b:row>
+				<b:column>
+					<h3>List of Categories</h3>
+					<b:dataTable value="#{categoryController.categories}" var="cat" id="categoryTable"
+						styleClass="table table-striped table-bordered" style="width:100%" paginated="false" >
+						<h:column>
+							<f:facet name="header">
+								<h:outputText value="Category" />
+							</f:facet>
+							<h:outputText value="#{cat.categoryName}" />
+						</h:column>
+						<h:column>
+							<f:facet name="header">
+								<h:outputText value="Total number of questions" />
+							</f:facet>
+							<h:outputText value="#{cat.totalNumberQuestions}" />
+						</h:column>
+						<h:column>
+							<f:facet name="header">
+								<h:outputText value="Maximum Number of correctly answered questions" />
+							</f:facet>
+							<h:outputText value="#{cat.maxNumberCorrectlyAnsweredQuestions}" />
+						</h:column>
+					</b:dataTable>
+				</b:column>
+			</b:row>
 		</b:container>
 	</h:body>
 </html>

@@ -35,6 +35,7 @@ public class QuizController implements Serializable {
 	private List<Question> questions;
 	private SingleScore score;
 
+	private Category chosenCategory;
 	private int countAnsweredQuestions = 0;
 	private String selectedAnswer;
 	private String ctrlMessage;
@@ -55,6 +56,8 @@ public class QuizController implements Serializable {
 
 	public void chooseCategory(Category category) {
 		this.questions = questionEJB.getQuestionsByCategory(category);
+
+		setChosenCategory(category);
 
 		if (this.questions.size() > 0) {
 			setCtrlMessage(null);
@@ -91,9 +94,7 @@ public class QuizController implements Serializable {
 	public void prepareSaveScore() {
 		this.score.setScore(this.countAnsweredQuestions);
 		this.score.setScoreDate(new Date());
-
-		// toDo: get categoryId from the category that has been chosen for the game
-		this.score.setCategoryId(27);
+		this.score.setCategoryId(getChosenCategory());
 
 		setCtrlMessage(null);
 
@@ -110,8 +111,17 @@ public class QuizController implements Serializable {
 		FacesContext.getCurrentInstance().getExternalContext().invalidateSession();
 	}
 
+
 	public Question getCurrentQuestion() {
 		return this.currentQuestion;
+	}
+
+	public Category getChosenCategory() {
+		return chosenCategory;
+	}
+
+	public void setChosenCategory(Category chosenCategory) {
+		this.chosenCategory = chosenCategory;
 	}
 
 	public SingleScore getScore() {
