@@ -12,4 +12,5 @@ public interface QuestionEJBLocal {
 	public List<Question> getAllQuestions();
 
 	public List<Question> getQuestionsByCategory(Category category);
+
 }

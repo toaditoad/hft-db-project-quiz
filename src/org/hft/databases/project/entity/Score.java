@@ -12,7 +12,6 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.MappedSuperclass;
 
-
 @MappedSuperclass
 public class Score implements Serializable {
 
@@ -79,5 +78,4 @@ public class Score implements Serializable {
 	public Category getCategoryId() {
 		return categoryId;
 	}
-
 }

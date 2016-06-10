@@ -19,6 +19,7 @@ public class ScoreEJB implements ScoreEJBLocal {
 
 	public SingleScore saveScore(SingleScore score) {
 		entityManager.persist(score);
+
 		return score;
 	}
 

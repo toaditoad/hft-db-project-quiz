@@ -71,8 +71,8 @@ public class QuizController implements Serializable {
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
-
 	}
+
 	public void evaluateAnswer() {
 		if (this.selectedAnswer.equals(this.currentQuestion.getCorrectAnswer())) {
 			System.out.println("success");
@@ -109,7 +109,6 @@ public class QuizController implements Serializable {
 		setCtrlMessage(this.score.getName() + ", you successfully stored your score of " + this.score.getScore() + ".");
 		FacesContext.getCurrentInstance().getExternalContext().invalidateSession();
 	}
-
 
 	public Question getCurrentQuestion() {
 		return this.currentQuestion;
